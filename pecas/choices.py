@@ -1,0 +1,21 @@
+DANOS_CORPORAIS = [
+('',''),
+('1','Perda anatomica e/ou funcional completa de ambos os membros superiores ou inferiores'),
+('2','Perda anatomica e/ou funcional completa de ambas as maos ou de ambos os pes'),
+('3','Perda anatomica e/ou funcional completa de um membro superior e de um membro inferior'),
+('4','Perda completa da visao em ambos os olhos (cegueira bilateral) ou cegueira legal bilateral'),
+('5','Lesoes neurologicas que cursem com: (a) dano coginitivo-comportamental alienante. (b) impedimento do senso de orientacao espacial e/ou do livre deslocamento corporal. (c) perda completa do controle esfincteriano. (d) comprometimento de funcao vital ou autonomica.'),
+('6','Lesoes de orgao ou estruturas cranios-faciais, cervicas, toracicos, abdominais, pelvicos ou retro-peritoneais cursando com prejuizos funcionais nao compensaveis de ordem autonomica, respiratoria, cardiovascular, digestiva, excretora ou de qualquer outra especie, desde que haja comprometimento de funcao vital'),
+('7','Perda antomica e/ou funcional completa de um dos membros superiores e/ou de uma das maos'),
+('8','Perda anatomica e/ou funcional completa de um dos membros inferiores'),
+('9','Perda anatomica e/ou funcional completa de um dos pes'),
+('10','Perda auditiva total bilateral (surdez completa) ou da fonação (mudez completa) ou da visao de um olho'),
+('11','Perda completa da mobilidade de um dos ombros, cotovelos, punhos ou dedo polegar'),
+('12','Perda completa da mobilidade de um quadril, joelho ou tornozelo'),
+('13','Perda completa da mobilidade de um segmento da coluna vertebral exceto o sacral'),
+('14','Perda anatomica e/ou funcional completa de qualquer um dentre os outros dedos da mao'),
+('15','Perda anatomica e/ou funcional completa de qualquer um dos dedos do pe'),
+('16','Perda integral (retirada cirurgica) do baço'),
+('18','Sequela nao indenizavel'),
+('20','Inconclusivo')
+]

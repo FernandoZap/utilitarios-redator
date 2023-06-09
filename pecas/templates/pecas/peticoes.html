@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+
+
+{% block sidebar %}
+
+{% endblock %}
+
+ {% block content %}
+<br/>
+
+
+<div class="container">    
+    <p align="center">{{ tipo_da_pecao }} </p>
+
+    <form name="form1" class="" action=""  method="post">{% csrf_token %}
+
+   {% if messages %}
+     <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+       {% endfor %}
+    </ul>
+  {% endif %}
+
+
+   <div class="row">   
+
+       <div class="form-group">
+      
+           <div class="col">
+             <label for="" id="lb_tipo" class="col-form-label">Tipo</label>
+             <select name="tipo" id="lb_tipo" class="form-control" />
+                <option value=""></option>
+                <option value="op_001_DesarquivamentoDevHonDupl">Desarquivamento Devolucao Hon. Duplicidade</option>
+                <option value="op_002_DevHPImprocedencia">Devolução HP Improcedencia</option>
+                <option value="op_003_DevHPImprocedenciaCDesarquiv">Devolução HP Improcedencia com Desarquivamento</option>
+                <option value="op_004_DevHPExtintoSemResolucao">Devolução HP Extinto Sem Resolução</option>
+                <option value="op_005_DevHPExtintoCDesarquivamento">Devolução HP Extinto Com Desarquivamento</option>
+                <option value="op_006_DevPernambuco">Devolução Pernambuco</option>
+                <option value="op_007_ReiterandoExpedicaoOficioDev">Reiterando Expedição Ofício Devolução</option>
+                <option value="op_008_DispComprovanteTransf">Disponibilização Comprovante de Transferência</option>
+                <option value="op_009_DispComprovanteTransfComDesarquiv">Disponibilização Comprovante de Transf c/ Desarquivamento</option>
+                <option value="op_010_JuntadaDePagamentoDaCondenacao">Juntada de Pagamento da Condenacao</option>
+                <option value="op_011_JuntadaDeCustasFinais">Juntada de Custas Finais</option>
+                <option value="op_012_DevolucaoHPRN-1">Devolução HP RN 1</option>
+                <option value="op_013_DevolucaoHPRN-2">Devolução HP RN 2</option>
+                <option value="op_014_DevolucaoHPRN-3">Devolução HP RN 3</option>
+                <option value="op_015_DevolucaoHPRN-4">Devolução HP RN 4</option>
+                <option value="op_016_DevolucaoHPRN-5">Devolução HP RN 5</option>
+                <option value="op_017_DevolucaoHPRN-6">Devolução HP RN 6</option>
+                <option value="op_018_DevolucaoHPRN-7">Devolução HP RN 7</option>
+             </select>
+          </div>
+
+           <div class="col">
+             <label for="" id="lb_pasta" class="col-form-label">Pasta Saj/Codigo cliente</label>
+             <input type="text" name="pasta" id="id_pasta" class="form-control" />
+          </div>
+
+	
+          <div class="col">
+            <label for="" id="lb_dados" class="col-form-label">Cliente/Autor/Comarca</label>
+            <input type="text" name="dados" id="id_dados" class="form-control" size="250"  />
+         </div>
+	
+
+      </div>
+	
+
+	<input type="hidden" name="autor" id="autor" value=""  />
+	<input type="hidden" name="cod_cliente" id="cod_cliente" value="" />
+	<input type="hidden" name="comarca" id="comarca" value=""  />
+	<input type="hidden" name="uf" id="uf" value="" />
+        <input type="hidden" name="cliente" id="cliente" value=""/>
+        <input type="hidden" name="juizo" id="juizo" value=""/>
+        <input type="hidden" name="nr_processo" id="nr_processo" value=""/>
+
+    
+    </div>    
+</div>  
+
+
+
+  <br>
+    <p>
+    	<a href="#" onclick="fnAvancar();" id="a_avancar" class="avancar">
+        Avançar
+    </a>
+    </p>
+
+<script>
+
+
+function fnColor(){
+	document.getElementById("lb_pasta").style.color="#000";
+	document.getElementById("lb_dados").style.color="#000";
+	return true;
+}
+
+function fnAvancar(){
+	fnColor();
+	var frm = document.form1;   
+	
+	if (document.getElementById("id_pasta").value==""){
+		alert("Informe o codigo da pasta!");
+		document.getElementById("lb_pasta").style.color="red";
+		document.getElementById("id_pasta").focus();
+		return false;
+	}
+	if (document.getElementById("id_dados").value==""){
+		alert("Codigo da pasta nao localizado!");
+		document.getElementById("lb_pasta").style.color="red";
+		document.getElementById("id_pasta").focus();
+		return false;
+	}
+
+	frm.submit();
+}
+
+
+</script>
+
+   </form>
+   <hr>
+</div>
+
+
+<style>
+
+
+.normal {
+	display: block;
+}
+
+.oculta {
+	display: none;
+}
+
+.avancar {
+	border-style:solid;
+	padding-bottom:5px;
+	padding-top:5px;
+	padding-left:10px;
+	padding-right:10px;
+	font-size:20px;
+	letter-spacing:1px;
+}
+
+
+</style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+<script>
+$(document).ready(function(){
+	var parametro1 = document.getElementById("id_pasta");
+   
+	$(parametro1).change(function(){
+    
+		var param = document.getElementById("id_pasta").value;
+		document.getElementById("id_dados").value="";
+		$.ajax({
+			type: "GET",
+			url: "{% url 'pecas:v003_ajax' %}",
+			data: {
+				opcao: param
+			},
+                        headers: {
+                                "X-Requested-With": "XMLHttpRequest",
+                        },
+			success: function(data){
+				let dados = data[0].value + '/' + data[1].value + '/' + data[2].value+'-'+data[3].value+'/'+data[4].value;
+				document.getElementById("id_dados").value = dados;
+				document.getElementById("cod_cliente").value = data[1].value;
+				document.getElementById("autor").value =  data[2].value;
+				document.getElementById("comarca").value =  data[3].value;
+				document.getElementById("uf").value =  data[4].value;
+                                document.getElementById("juizo").value = data[5].value;
+                                document.getElementById("nr_processo").value = data[7].value;
+                                document.getElementById("cliente").value = data[8].value;
+
+			}
+		});
+	}); 
+});
+
+</script>
+
+
+{% endblock %}
+
