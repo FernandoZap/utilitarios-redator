@@ -80,7 +80,7 @@ def f001_sql(cod_pasta,flag):
 
 def f001_mysql(cod_pasta):
 
-    db_connection = MySQLdb.connect(host="127.0.0.1", user="root", passwd="123456", db="db_jbaa1")
+    db_connection = MySQLdb.connect(host="", user="", passwd="", db="")
     db_cursor = db_connection.cursor()
     sql_command =   """
         select 
