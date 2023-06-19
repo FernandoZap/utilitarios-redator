@@ -46,11 +46,6 @@ wheels/
 env/
 venv/
 venv38/
-stringConnexao.py
-pecas/stringConnexao.py
-app01/stringConnexao.py
-settings_producao.py
-settings_local.py
 
 
 
