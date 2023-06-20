@@ -79,7 +79,7 @@ def peticoes(teses,dados_compl,dados_pasta):
     funcoes_impressao.pagina_de_encerramento(doc,pasta)
 
     nome=cod_cliente+'_'+pasta+'_Embargos_Omissao' + funcoes_gerais.data_doc() +'.docx'
-    nome_documento = '/home/fernandopaz/projetos/documentos/'+nome
+    nome_documento = os.environ.get('DIR_DOCUMENTOS')+'/'+nome
     doc.save(nome_documento)
 
     return nome

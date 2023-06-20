@@ -133,9 +133,8 @@ def modelos_peticoes(modelo,dados_da_pasta,info):
     #funcoes_impressao.pagina_conclusao(doc,dados_da_pasta.pasta)
     funcoes_impressao.pagina_de_encerramento_peticoes(doc,pasta)
 
-    #nome_documento="c:/Avulsos/testes/embargos" +funcoes_gerais.data_doc() +".docx"
-    #nome_documento="c:/projetos/utiljb/staticfiles/static/imagens/embargos" +funcoes_gerais.data_doc() +".docx"
-    nome_documento =  "/home/fernandopaz/projetos/documentos/"+nome_arquivo+'_'+funcoes_gerais.data_doc() + ".docx"
+    nome_documento =  os.environ.get('DIR_DOCUMENTOS')+"/"+nome_arquivo+'_'+funcoes_gerais.data_doc() + ".docx"
+
     nome=nome_arquivo+'_'+ funcoes_gerais.data_doc() +".docx"
     doc.save(nome_documento)
 

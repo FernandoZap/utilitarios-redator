@@ -53,7 +53,7 @@ def pagina_inicial(doc,pasta):
 
     # construcao da primeira pagina
     #imagem= doc.add_picture('C:/Users/Fernando/saj vps/img/logo_jbaa.png', width=Inches(1.25))
-    imagem= doc.add_picture('/home/fernandopaz/projetos/imagens/logo_jbaa.png', width=Inches(1.45))
+    imagem= doc.add_picture(os.environ.get('DIR_IMAGENS')+'/logo_jbaa.png', width=Inches(1.45))
     last_paragraph = doc.paragraphs[-1]
     last_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     doc.add_paragraph
@@ -213,7 +213,7 @@ def pagina_inicial_peticoes_desarquivamento(doc,dados_da_pasta,tipo,informs_da_p
 
     # construcao da primeira pagina
     #imagem= doc.add_picture('C:/Users/Fernando/saj vps/img/logo_jbaa.png', width=Inches(1.25))
-    imagem= doc.add_picture('/home/fernandopaz/projetos/imagens/logo_jbaa.png', width=Inches(1.45))
+    imagem= doc.add_picture(os.environ.get('DIR_IMAGENS')+'/logo_jbaa.png', width=Inches(1.45))
     last_paragraph = doc.paragraphs[-1]
     last_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     doc.add_paragraph
@@ -332,7 +332,7 @@ def pagina_inicial_peticoes_devolucao(doc,dados_da_pasta):
 
     # construcao da primeira pagina
     #imagem= doc.add_picture('C:/Users/Fernando/saj vps/img/logo_jbaa.png', width=Inches(1.25))
-    imagem= doc.add_picture('/home/fernandopaz/projetos/imagens/logo_jbaa.png', width=Inches(1.45))
+    imagem= doc.add_picture(os.environ.get('DIR_IMAGENS')+'/logo_jbaa.png', width=Inches(1.45))
     last_paragraph = doc.paragraphs[-1]
     last_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     doc.add_paragraph

@@ -18,13 +18,10 @@ import pyodbc as p
 import os
 import json
 import mysql.connector
-#import MySQLdb # para o MySQL
 
 
 def download_file(request,docmto):
-   #the_file ='c:/projetos/proj02/static/docs/'+docmto
-   the_file='/home/fernandopaz/projetos/documentos/'+docmto
-   #the_file = docmto
+   the_file = os.environ.get('DIR_DOCUMENTOS')+'/'+docmto
    filename = os.path.basename(the_file)
    chunk_size = 8192
    response = StreamingHttpResponse(FileWrapper(open(the_file, 'rb'), chunk_size),
@@ -160,13 +157,12 @@ def v008_embargos_omissao(request,pasta,hanulidadepublic,data_publicacao):
         dados_complementares['desc_lpe']=request.POST['desc_lpe']
         dados_complementares['local_diligencia']=request.POST['local_diligencia']
 
-        dados_pasta = funcoes_banco.f002_sql(request.POST['pasta'])
+        dados_pasta = funcoes_banco.f002_sql(pasta)
 
         dados_complementares['adv_publicando'] = dados_pasta['publicando_nome']
         dados_complementares['nr_processo'] = dados_pasta['nr_processo']
         dados_complementares['cod_cliente'] = dados_pasta['cod_cliente']
 
-        dados_da_pasta = funcoes_banco.f002_sql(pasta)
 
         valor_extenso=funcoes_gerais.valor_por_extenso(valor)
 
@@ -178,7 +174,7 @@ def v008_embargos_omissao(request,pasta,hanulidadepublic,data_publicacao):
         #return HttpResponse("<h1>Teste</h1>")
 
 
-        file = embargos_omissao.peticoes(teses=teses_emb_omissao,dados_compl=dados_complementares,dados_da_pasta=dados_da_pasta)
+        file = embargos_omissao.peticoes(teses=teses_emb_omissao,dados_compl=dados_complementares,dados_pasta=dados_pasta)
 
         #file = templates.embargosOmissao(context=dados_complementares)
 
@@ -273,7 +269,6 @@ def v004_peticoes(request):
         elif tipo=='op_011_JuntadaDeCustasFinais':
             file=peticoes.modelos_peticoes('op_011_juntadaDeCustasFinais',dados_da_pasta=pasta_saj,info=informacoesDaPasta)
         return redirect('pecas:download', docmto=file)
-        #return redirect('pecas:peticao_01')
     else:
         dados = {
             'tipo_da_pecao': 'Peticões'
@@ -298,7 +293,6 @@ def peticoes_teste(request):
         if tipo=='Desarquivamento DHD':
             file=peticao_teste.fun_peticao_01(pasta,cod_cliente,autor,nr_processo,comarca,uf,cliente,juizo,conv_nome,conv_oab)
         return redirect('pecas:download', docmto=file)
-        #return redirect('pecas:peticao_01')
     else:
         dados = {
             'tipo_da_pecao': 'Peticões Teste'
@@ -322,5 +316,5 @@ def planilha(request):
     ws['A2'] = datetime.datetime.now()
 
     # Save the file
-    wb.save("/home/fernandopaz/projetos/documentos/sample.xlsx")
+    wb.save(os.environ.get('DIR_DOCUMENTOS')+"/sample.xlsx")
     return HttpResponse("<h1>Gravando planilha</h1>")
