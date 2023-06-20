@@ -8,7 +8,9 @@ from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from . import dados_informados,embargos_omissao,funcoes_banco,funcoes_gerais,funcoes_teses,peticao_des_dev_hon_dup,peticao_teste,teses,peticao_dev_hp_improcedente,peticoes
+#from . import dados_informados,embargos_omissao,funcoes_banco,funcoes_gerais,funcoes_teses,peticao_des_dev_hon_dup,peticao_teste,teses,peticao_dev_hp_improcedente,peticoes
+from . import dados_informados,embargos_omissao,funcoes_banco,funcoes_gerais,funcoes_teses,teses,peticoes
+
 from .classes import Pasta
 from openpyxl import Workbook
 
