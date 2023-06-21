@@ -192,9 +192,7 @@ def pagina_inicial_peticoes_desarquivamento(doc,dados_da_pasta,tipo,informs_da_p
     dados_view = funcoes_banco.f001_sql(dados_da_pasta.pasta,1)
     dados_pasta = funcoes_banco.f002_sql(dados_da_pasta.pasta)
 
-
     nr_processo=fun_nr_processo(dados_view['nr_processo'],dados_view['nr_processoSE'],dados_view['uf'])
-
 
     styles = doc.styles
     p4 = styles.add_style("style4", WD_STYLE_TYPE.PARAGRAPH)
@@ -226,14 +224,7 @@ def pagina_inicial_peticoes_desarquivamento(doc,dados_da_pasta,tipo,informs_da_p
 
     # nº processo
     paragraph3 = doc.add_paragraph()
-    paragraph3 = doc.add_paragraph()
-    paragraph3 = doc.add_paragraph()
-    paragraph3 = doc.add_paragraph()
     paragraph3.add_run('Processo: '+nr_processo+'\n').bold = True
-
-    paragraph3 = doc.add_paragraph()
-    paragraph3 = doc.add_paragraph()
-    paragraph3 = doc.add_paragraph()
 
 
     para = doc.add_paragraph('',style='style4')
@@ -286,17 +277,22 @@ def pagina_inicial_peticoes_desarquivamento(doc,dados_da_pasta,tipo,informs_da_p
         para.add_run(', em trâmite perante este Douto Juízo, vem, respeitosamente, à presença de V. Exa.,')
         run = para.add_run(' requerer a juntada da inclusa guia de recolhimento de custas finais.')
         run.font.bold = True
+    elif tipo==10:
+        para.add_run(', em trâmite perante este Douto Juízo e Respectivo Cartório, vem, mui respeitosamente, à presença de V. Exa., informar para ao final requerer o que segue:')
+
 
     # footer
+    '''
     section = doc.sections[0]
     footer = section.footer
-    footer_para = footer.paragraphs[0]
+    footer_para = xfooter.paragraphs[0]
     para = footer_para.add_run(\
         ' \tRua São José, 90, 8º andar, Centro, Rio de Janeiro/RJ - CEP: 20010-020 \
         \n\twww.joaobarbosaadvass.com.br'\
     )
     para.font.size = Pt(9)
     para.font.name = 'Calibri'
+    '''
 
 
 def pagina_inicial_peticoes_devolucao(doc,dados_da_pasta):

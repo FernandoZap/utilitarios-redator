@@ -127,7 +127,9 @@ def modelos_peticoes(modelo,dados_da_pasta,info):
     elif modelo=='op_011_juntadaDeCustasFinais':
         funcoes_impressao.pagina_inicial_peticoes_desarquivamento(doc,dados_da_pasta,9,info)
         pet_011_JuntadaDeCustasFinais(dados_da_pasta,doc)
-
+    elif modelo=='op_019_ImpugnAntecipDePericia':
+        funcoes_impressao.pagina_inicial_peticoes_desarquivamento(doc,dados_da_pasta,10,info)
+        pet_019_ImpugnAntecipDePericia(dados_da_pasta,doc)
 
     # assinatura
     #funcoes_impressao.pagina_conclusao(doc,dados_da_pasta.pasta)
@@ -858,6 +860,39 @@ def pet_011_JuntadaDeCustasFinais(dados_da_pasta,doc):
     return doc
 
 
+def pet_019_ImpugnAntecipDePericia(dados_da_pasta,doc):
+    doc.add_paragraph('Com o objetivo de esclarecer as dúvidas existentes em relação ao grau de invalidez, o Tribunal de Justiça '+
+    'deste Estado estabeleceu um convênio que determina que em todas as ações envolvendo sinistros cobertos pelo Seguro DPVAT, '+
+    'independentemente da seguradora demandada, o magistrado designará um perito de sua confiança. '+
+    'As partes têm a opção de indicar assistentes técnicos para acompanhar as avaliações médicas.', style='Style-2')
+
+
+    para = doc.add_paragraph('É importante ressaltar que todas as perícias realizadas serão pagas pela Seguradora Líder,'+
+    'em conformidade com os termos estabelecidos no referido convênio, independentemente do '+
+    'resultado e a Seguradora deve ser devidamente notificada para efetuar o pagamento '+
+    'no prazo de ',style = 'Style-2')
+
+    para.add_run('até quinze dias a partir da intimação.').underline=True
+
+
+    doc.add_paragraph('No entanto, observa-se que há muitos processos extintos sem resolução de mérito devido '+
+    'à ausência dos autores na perícia judicial. Diante disso, em razão da ausência '+
+    'da parte autora na prova designada, há necessidade de restituição à Ré '+
+    'do valor adiantado a título de honorários periciais, o qual foi previamente depositado.', style='Style-2')
+
+    doc.add_paragraph('Tal procedimento viola os princípios da celeridade e duração razoável do processo, '+
+    'uma vez que o pedido de devolução dos valores resulta em uma nova conclusão, '+
+    'sobrecarregando os magistrados e, principalmente, os servidores do judiciário, '+
+    'responsáveis pela execução das decisões.', style='Style-2')
+
+    para = doc.add_paragraph('Diante do exposto, considerando que a prova pericial é essencial para a resolução '+
+    'da presente demanda e com o intuito de promover a celeridade e duração razoável '+
+    'do processo, a ré requer que este d. Juízo ', style = 'Style-2')
+    para.add_run('DETERMINE A INTIMAÇÃO DA RÉ PARA O PAGAMENTO DOS HONORÁRIOS PERICIAIS SOMENTE APÓS A REALIZAÇÃO DA PERÍCIA.').bold = True
+
+    return doc
+
+
 def montarNomeArquivo(modelo,cod_cliente,pasta):
     prefixo = modelo[0:6]
     return cod_cliente+'_'+fun_nomeDoModelo(prefixo)+'_'+pasta
@@ -881,7 +916,9 @@ def fun_nomeDoModelo(prefixo):
         'op_006':'DevolucaoPernambuco_pet006',
         'op_004':'DevolucaoHPExtSResolucao_pet004',
         'op_005':'DevolucaoHPExtintoCDesarq_pet005',
-        'op_011':'JuntadaDeCustasFinais_pet011'
+        'op_011':'JuntadaDeCustasFinais_pet011',
+        'op_019':'ImpugnacaoAntecipDePericia_pet019'
+
     }
     return dicionario[prefixo]
 

@@ -270,6 +270,9 @@ def v004_peticoes(request):
             file=peticoes.modelos_peticoes('op_018_devolucaoHPRN7',dados_da_pasta=pasta_saj,info=informacoesDaPasta)
         elif tipo=='op_011_JuntadaDeCustasFinais':
             file=peticoes.modelos_peticoes('op_011_juntadaDeCustasFinais',dados_da_pasta=pasta_saj,info=informacoesDaPasta)
+        elif tipo=='op_019_ImpugnAntecipDePericia':
+            file=peticoes.modelos_peticoes('op_019_ImpugnAntecipDePericia',dados_da_pasta=pasta_saj,info=informacoesDaPasta)
+
         return redirect('pecas:download', docmto=file)
     else:
         dados = {
