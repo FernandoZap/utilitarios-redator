@@ -19,7 +19,6 @@ num2words==0.5.12
 openpyxl==3.0.10
 Pillow==9.3.0
 pio==0.0.3
-pkg_resources==0.0.0
 protobuf==3.20.1
 pyodbc==4.0.35
 python-docx==0.8.11
